@@ -1,6 +1,6 @@
 // Menu Data
 const categories = [
-    { id: "appetizers", name: "Appetizers", icon: "fa-french-fries" },
+    { id: "appetizers", name: "Appetizers", icon: "fa-plate-wheat" },
     { id: "doner", name: "Döner", icon: "fa-utensils" },
     { id: "burger", name: "Burger", icon: "fa-burger" },
     { id: "pizza", name: "Pizza", icon: "fa-pizza-slice" },
@@ -774,29 +774,29 @@ const categories = [
                 </div>
               </label>
             </div>
-            <div class="cart-footer">
-              ${!meetsMinimumOrder ? `
-                <div class="minimum-order-warning" style="background: rgba(234, 179, 8, 0.1); border: 1px solid rgba(234, 179, 8, 0.2); border-radius: 0.5rem; padding: 0.75rem; margin-bottom: 0.75rem;">
-                  <div style="display: flex; align-items: center; gap: 0.5rem; color: rgb(234, 179, 8);">
-                    <i class="fa-solid fa-exclamation-triangle"></i>
-                    <span style="font-size: 0.875rem; font-weight: 500;">Minimum order value: ${MINIMUM_ORDER_VALUE}€</span>
-                  </div>
-                  <p style="font-size: 0.75rem; color: rgb(115, 115, 115); margin-top: 0.25rem;">
-                    ${remainingAmount.toFixed(2)}€ more to reach the minimum order value!
-                  </p>
+          </div>
+          <div class="cart-footer">
+            ${!meetsMinimumOrder ? `
+              <div class="minimum-order-warning" style="background: rgba(234, 179, 8, 0.1); border: 1px solid rgba(234, 179, 8, 0.2); border-radius: 0.5rem; padding: 0.75rem; margin-bottom: 0.75rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; color: rgb(234, 179, 8);">
+                  <i class="fa-solid fa-exclamation-triangle"></i>
+                  <span style="font-size: 0.875rem; font-weight: 500;">Minimum order value: ${MINIMUM_ORDER_VALUE}€</span>
                 </div>
-              ` : ""}
-              <button class="cart-checkout-btn" id="confirmOrder" ${!meetsMinimumOrder ? "disabled style='opacity: 0.5; cursor: not-allowed;'" : ""}>
-                <i class="fa-solid fa-check"></i>
-                Confirm Order - ${totals.total.toFixed(2)}€
-              </button>
-            </div>
+                <p style="font-size: 0.75rem; color: rgb(115, 115, 115); margin-top: 0.25rem;">
+                  ${remainingAmount.toFixed(2)}€ more to reach the minimum order value!
+                </p>
+              </div>
+            ` : ""}
+            <button class="cart-checkout-btn" id="confirmOrder" ${!meetsMinimumOrder ? "disabled style='opacity: 0.5; cursor: not-allowed;'" : ""}>
+              <i class="fa-solid fa-check"></i>
+              Confirm Order - ${totals.total.toFixed(2)}€
+            </button>
           </div>
         </div>
       `;
     } else {
       sidebar.innerHTML = `
-        <div class="cart-wrapper">
+        <div>
           <div class="cart-header">
             <div class="cart-header-left">
               <div class="cart-header-icon">
@@ -901,47 +901,47 @@ const categories = [
                   </div>
                 </div>
               </div>
-              ${totalItems > 0 ? `
-                <div class="cart-footer">
-                  <div class="cart-summary">
-                    <div class="cart-summary-row">
-                      <span>Subtotal</span>
-                      <span>${totals.subtotal.toFixed(2)}€</span>
-                    </div>
-                    ${totals.extras > 0 ? `
-                      <div class="cart-summary-row">
-                        <span>Extras</span>
-                        <span>${totals.extras.toFixed(2)}€</span>
-                      </div>
-                    ` : ""}
-                    <div class="cart-summary-row">
-                      <span>Delivery</span>
-                      <span>${totals.deliveryFee.toFixed(2)}€</span>
-                    </div>
-                  </div>
-                  <div class="cart-total">
-                    <span class="cart-total-label">Total</span>
-                    <span class="cart-total-value">${totals.total.toFixed(2)}€</span>
-                  </div>
-                  ${!meetsMinimumOrder ? `
-                    <div class="minimum-order-warning" style="background: rgba(234, 179, 8, 0.1); border: 1px solid rgba(234, 179, 8, 0.2); border-radius: 0.5rem; padding: 0.75rem; margin-bottom: 0.75rem;">
-                      <div style="display: flex; align-items: center; gap: 0.5rem; color: rgb(234, 179, 8);">
-                        <i class="fa-solid fa-exclamation-triangle"></i>
-                        <span style="font-size: 0.875rem; font-weight: 500;">Minimum order value: ${MINIMUM_ORDER_VALUE}€</span>
-                      </div>
-                      <p style="font-size: 0.75rem; color: rgb(115, 115, 115); margin-top: 0.25rem;">
-                        ${remainingAmount.toFixed(2)}€ more to reach the minimum order value!
-                      </p>
-                    </div>
-                  ` : ""}
-                  <button class="cart-checkout-btn" id="proceedCheckout" ${!meetsMinimumOrder ? "disabled style='opacity: 0.5; cursor: not-allowed;'" : ""}>
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    Order Now
-                  </button>
-                </div>
-              ` : ""}
             `}
           </div>
+          ${totalItems > 0 ? `
+            <div class="cart-footer">
+              <div class="cart-summary">
+                <div class="cart-summary-row">
+                  <span>Subtotal</span>
+                  <span>${totals.subtotal.toFixed(2)}€</span>
+                </div>
+                ${totals.extras > 0 ? `
+                  <div class="cart-summary-row">
+                    <span>Extras</span>
+                    <span>${totals.extras.toFixed(2)}€</span>
+                  </div>
+                ` : ""}
+                <div class="cart-summary-row">
+                  <span>Delivery</span>
+                  <span>${totals.deliveryFee.toFixed(2)}€</span>
+                </div>
+              </div>
+              <div class="cart-total">
+                <span class="cart-total-label">Total</span>
+                <span class="cart-total-value">${totals.total.toFixed(2)}€</span>
+              </div>
+              ${!meetsMinimumOrder ? `
+                <div class="minimum-order-warning" style="background: rgba(234, 179, 8, 0.1); border: 1px solid rgba(234, 179, 8, 0.2); border-radius: 0.5rem; padding: 0.75rem; margin-bottom: 0.75rem;">
+                  <div style="display: flex; align-items: center; gap: 0.5rem; color: rgb(234, 179, 8);">
+                    <i class="fa-solid fa-exclamation-triangle"></i>
+                    <span style="font-size: 0.875rem; font-weight: 500;">Minimum order value: ${MINIMUM_ORDER_VALUE}€</span>
+                  </div>
+                  <p style="font-size: 0.75rem; color: rgb(115, 115, 115); margin-top: 0.25rem;">
+                    ${remainingAmount.toFixed(2)}€ more to reach the minimum order value!
+                  </p>
+                </div>
+              ` : ""}
+              <button class="cart-checkout-btn" id="proceedCheckout" ${!meetsMinimumOrder ? "disabled style='opacity: 0.5; cursor: not-allowed;'" : ""}>
+                <i class="fa-solid fa-bag-shopping"></i>
+                Order Now
+              </button>
+            </div>
+          ` : ""}
         </div>
       `;
     }
