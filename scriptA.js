@@ -1122,11 +1122,72 @@ function attachCartListeners() {
     confirmBtn.addEventListener("click", () => {
       const totals = getCartTotals();
       if (totals.subtotal >= MINIMUM_ORDER_VALUE) {
+        // ===== GA4 TRACKING =====
+        trackPurchaseCompleted();
+        // ========================
+
         clearCart();
         closeCart();
         showOrderConfirmation();
       }
     });
+  }
+}
+
+// ===================================================================
+// GA4 Tracking Functions
+// ===================================================================
+
+/**
+ * Generiere eine eindeutige Transaktions-ID
+ */
+function generateTransactionId() {
+  const timestamp = Date.now();
+  const random = Math.random().toString(36).substr(2, 9);
+  return `T-${timestamp}-${random}`;
+}
+
+/**
+ * Zähle Bestseller im Warenkorb
+ */
+function countBestsellers() {
+  return cart.filter(item => item.isBestseller).length;
+}
+
+/**
+ * Hauptfunktion: Tracking-Event an GTM senden
+ */
+function trackPurchaseCompleted() {
+  try {
+    // Sammle alle Daten aus dem aktuellen Cart-Status
+    const totals = getCartTotals();
+    const tipPercentage = Math.round(cartState.selectedTipPercent * 100); // In Prozent (z.B. 10 für 10%)
+
+    const trackingData = {
+      event: 'purchase_completed',
+      transaction_id: generateTransactionId(),
+      tip_percentage: tipPercentage,
+      bestseller_count: countBestsellers(),
+      has_insurance: cartState.hasInsurance,
+      is_co2_neutral: cartState.isCO2Neutral,
+      has_subscription: cartState.hasSubscription,
+      total_value: parseFloat(totals.total.toFixed(2))
+    };
+
+    // Debug: Zeige Daten in Konsole
+    console.log('📊 GA4 Tracking Event:', trackingData);
+
+    // Initialisiere DataLayer falls noch nicht vorhanden
+    window.dataLayer = window.dataLayer || [];
+
+    // Sende an DataLayer
+    window.dataLayer.push(trackingData);
+
+    // Bestätigung in Konsole
+    console.log('✅ Event erfolgreich an DataLayer gesendet');
+
+  } catch (error) {
+    console.error('❌ Fehler beim Tracking:', error);
   }
 }
 
