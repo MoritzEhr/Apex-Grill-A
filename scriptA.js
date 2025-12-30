@@ -1148,6 +1148,14 @@ function generateTransactionId() {
 }
 
 /**
+ * Hole URL-Parameter (z.B. uid)
+ */
+function getUrlParameter(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name) || null;
+}
+
+/**
  * Zähle Bestseller im Warenkorb
  */
 function countBestsellers() {
@@ -1162,10 +1170,12 @@ function trackPurchaseCompleted() {
     // Sammle alle Daten aus dem aktuellen Cart-Status
     const totals = getCartTotals();
     const tipPercentage = Math.round(cartState.selectedTipPercent * 100); // In Prozent (z.B. 10 für 10%)
+    const uid = getUrlParameter('uid'); // Hole uid aus URL
 
     const trackingData = {
       event: 'purchase_completed',
       transaction_id: generateTransactionId(),
+      uid: uid,
       tip_percentage: tipPercentage,
       bestseller_count: countBestsellers(),
       has_insurance: cartState.hasInsurance,
