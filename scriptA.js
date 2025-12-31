@@ -1175,7 +1175,7 @@ function trackPurchaseCompleted() {
     const trackingData = {
       event: 'purchase_completed',
       transaction_id: generateTransactionId(),
-      uid: uid,
+      uid_token: uid,
       tip_percentage: tipPercentage,
       bestseller_count: countBestsellers(),
       has_insurance: cartState.hasInsurance,
