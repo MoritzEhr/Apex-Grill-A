@@ -1198,7 +1198,7 @@ function trackPurchaseCompleted() {
         has_insurance: cartState.hasInsurance,
         is_co2_neutral: cartState.isCO2Neutral,
         has_subscription: cartState.hasSubscription,
-        total_value: parseFloat(totals.total.toFixed(2)),
+        total_value: totals.total,
         currency: 'EUR'
       });
 
