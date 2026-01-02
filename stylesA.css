@@ -840,6 +840,43 @@ body {
   color: hsl(var(--primary));
 }
 
+/* Analytics Banner */
+.analytics-banner {
+  background-color: hsl(var(--secondary) / 0.5);
+  border-top: 1px solid hsl(var(--border));
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+}
+
+.analytics-banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.analytics-banner-content i {
+  color: hsl(var(--primary));
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.analytics-banner-text {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .analytics-banner-content {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
 /* Cart Sidebar */
 .cart-overlay {
   position: fixed;
