@@ -206,6 +206,7 @@ const menuItems = [
     price: 12.90,
     image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.wellplated.com%2Fwp-content%2Fuploads%2F2021%2F06%2FGrilled-Halloumi-Salad.jpg&f=1&nofb=1&ipt=0edaddf586f004c3c68942a25d56170fac9e5ed2d117206477b1aa8c9d5c6ced",
     category: "vegetarian",
+    isBestseller: true,
   },
   {
     id: "veg-4",
@@ -280,6 +281,7 @@ const menuItems = [
     price: 7.90,
     image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.cookingclassy.com%2Fwp-content%2Fuploads%2F2022%2F02%2Fmolten-lava-cake-17.jpg&f=1&nofb=1&ipt=826139bf945b1b8f6b83c9bc3c38e1302134c8355afb97dc2ae9e2e92ada3aa5",
     category: "desserts",
+    isBestseller: true,
   },
   {
     id: "dessert-6",
